@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import MoodSelector from '@/components/MoodSelector';
 import PlaylistView from '@/components/PlaylistView';
 import MusicPlayer from '@/components/MusicPlayer';
+import RecommendationView from '@/components/RecommendationView';
 import { Playlist, Mood, playlists } from '@/data/playlists';
 import { useToast } from '@/components/ui/use-toast';
 import { Music } from 'lucide-react';
+import { useRecommendationEngine } from '@/hooks/useRecommendationEngine';
 
 const Index = () => {
   const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
@@ -15,7 +17,15 @@ const Index = () => {
   const [volume, setVolume] = useState(80);
   const [isMuted, setIsMuted] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [recentlyPlayed, setRecentlyPlayed] = useState<string[]>([]);
   const { toast } = useToast();
+  
+  // Initialize our recommendation engine
+  const { recommendations, weights, provideFeedback, resetWeights } = useRecommendationEngine(
+    selectedMood,
+    currentSong,
+    recentlyPlayed
+  );
   
   // Effect for mock progress increase when playing
   useEffect(() => {
@@ -48,9 +58,28 @@ const Index = () => {
   };
   
   const handlePlaySong = (songId: string) => {
+    // Add current song to recently played if it exists
+    if (currentSong) {
+      setRecentlyPlayed(prev => {
+        const newRecent = [currentSong, ...prev.slice(0, 4)];
+        return [...new Set(newRecent)]; // Remove duplicates
+      });
+    }
+    
     setCurrentSong(songId);
     setIsPlaying(true);
     setProgress(0);
+  };
+  
+  const handleFeedback = (songId: string, isPositive: boolean) => {
+    provideFeedback(songId, isPositive);
+    
+    toast({
+      title: isPositive ? "Thanks for your feedback!" : "We'll improve your recommendations",
+      description: isPositive 
+        ? "We'll recommend more music like this." 
+        : "We've adjusted our recommendations based on your feedback.",
+    });
   };
   
   const handlePause = () => {
@@ -66,6 +95,12 @@ const Index = () => {
   
   const handleNext = () => {
     if (!currentPlaylist || !currentSong) return;
+    
+    // Add current song to recently played
+    setRecentlyPlayed(prev => {
+      const newRecent = [currentSong, ...prev.slice(0, 4)];
+      return [...new Set(newRecent)]; // Remove duplicates
+    });
     
     const currentIndex = currentPlaylist.songs.findIndex(song => song.id === currentSong);
     const nextIndex = (currentIndex + 1) % currentPlaylist.songs.length;
@@ -108,15 +143,27 @@ const Index = () => {
       <main className="container space-y-10 pb-24">
         <MoodSelector onMoodSelect={handleMoodSelect} selectedMood={selectedMood} />
         
-        {currentPlaylist && (
-          <PlaylistView
-            playlist={currentPlaylist}
-            mood={selectedMood as Mood}
-            isPlaying={isPlaying}
-            currentSong={currentSong}
-            onPlay={handlePlaySong}
-            onPause={handlePause}
-          />
+        {selectedMood && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {currentPlaylist && (
+              <PlaylistView
+                playlist={currentPlaylist}
+                mood={selectedMood}
+                isPlaying={isPlaying}
+                currentSong={currentSong}
+                onPlay={handlePlaySong}
+                onPause={handlePause}
+              />
+            )}
+            
+            <RecommendationView
+              recommendations={recommendations}
+              weights={weights}
+              onPlaySong={handlePlaySong}
+              onFeedback={handleFeedback}
+              onResetWeights={resetWeights}
+            />
+          </div>
         )}
       </main>
       
