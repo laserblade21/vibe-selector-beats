@@ -1,73 +1,57 @@
-# Welcome to your Lovable project
+# 🎧 Vibe Selector Beats
 
-## Project info
+**Vibe Selector Beats** is a vibrant, mood-based music playlist generator designed to help users discover songs that resonate with how they’re feeling. Whether you're relaxed, energized, nostalgic, or anything in between — this app curates playlists that match your vibe.
 
-**URL**: https://lovable.dev/projects/6661b3af-b6e2-42b7-b606-9fc6b43ae760
+Built with a clean, modern frontend and smooth interactions, Vibe Selector Beats is your personal soundtrack curator, combining beautiful UI with emotional connectivity.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/6661b3af-b6e2-42b7-b606-9fc6b43ae760) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
+## 🚀 Tech Stack
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- ⚡ Vite – Blazing-fast build tool  
+- 🔷 TypeScript – Type-safe React development  
+- ⚛️ React – Core framework for UI  
+- 🧩 shadcn/ui – Accessible, reusable components  
+- 🎨 Tailwind CSS – Utility-first styling for fast, responsive design  
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/6661b3af-b6e2-42b7-b606-9fc6b43ae760) and click on Share -> Publish.
+## 🌟 Features
 
-## Can I connect a custom domain to my Lovable project?
+- 🎭 Mood-Based Selection  
+  Choose from a range of moods with dynamic color cues and gradient visuals.
 
-Yes, you can!
+- 🎶 Curated Playlist Generation  
+  Hand-picked playlists for each emotional state (more features like dynamic playlisting to come!).
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- ▶️ Music Player  
+  Built-in player with play, pause, and skip controls.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- 📱 Responsive Design  
+  Fully responsive and mobile-friendly for all device types.
+
+- 🎨 Mood-Themed Styling  
+  Gradient backgrounds and transitions based on selected mood — warm colors for energetic vibes, cool tones for calm ones.
+
+- 💫 Smooth Animations  
+  Enhanced UX with transitions that feel intuitive and fluid.
+
+---
+
+## 📸 UI Preview (Coming Soon)
+
+Screenshots and demos will be added after the MVP launch.
+
+---
+
+## 🛠️ Getting Started
+
+Clone the repo and run it locally:
+
+```bash
+git clone https://github.com/laserblade21/vibe-selector-beats.git
+cd vibe-selector-beats
+npm install
+npm run dev
