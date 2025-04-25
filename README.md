@@ -40,9 +40,8 @@ This project is built with:
 
 ---
 
-## 📸 UI Preview (Coming Soon)
+## 📸 Launch (Coming Soon)
 
-Screenshots and demos will be added after the MVP launch.
 
 ---
 
