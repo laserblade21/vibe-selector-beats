@@ -141,6 +141,22 @@ const RecommendationView: React.FC<RecommendationViewProps> = ({
                           )}
                         </Button>
                       </CollapsibleTrigger>
+                      
+                      <CollapsibleContent className="px-3 pb-3 pt-0">
+                        <div className="bg-background p-3 rounded-md">
+                          <h5 className="text-sm font-medium mb-2">Why we recommend this:</h5>
+                          <ul className="space-y-2">
+                            {rec.explanations.slice(0, 2).map((exp, idx) => (
+                              <li key={idx} className="flex items-center gap-2">
+                                <Badge className={`${getBadgeColor(exp.type)}`}>
+                                  {exp.type.charAt(0).toUpperCase() + exp.type.slice(1)}
+                                </Badge>
+                                <span className="text-sm">{exp.reason}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </CollapsibleContent>
                     </Collapsible>
                     
                     <Button
@@ -189,22 +205,6 @@ const RecommendationView: React.FC<RecommendationViewProps> = ({
                     </TooltipProvider>
                   </div>
                 </div>
-                
-                <CollapsibleContent className="px-3 pb-3 pt-0">
-                  <div className="bg-background p-3 rounded-md">
-                    <h5 className="text-sm font-medium mb-2">Why we recommend this:</h5>
-                    <ul className="space-y-2">
-                      {rec.explanations.slice(0, 2).map((exp, idx) => (
-                        <li key={idx} className="flex items-center gap-2">
-                          <Badge className={`${getBadgeColor(exp.type)}`}>
-                            {exp.type.charAt(0).toUpperCase() + exp.type.slice(1)}
-                          </Badge>
-                          <span className="text-sm">{exp.reason}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CollapsibleContent>
               </li>
             ))}
           </ul>
