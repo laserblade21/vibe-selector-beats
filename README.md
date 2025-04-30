@@ -43,8 +43,6 @@ This project is built with:
 ## 📸 Launch (Coming Soon)
 
 
----
-
 ## 🛠️ Getting Started
 
 Clone the repo and run it locally:
